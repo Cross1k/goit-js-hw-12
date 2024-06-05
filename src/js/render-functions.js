@@ -2,19 +2,19 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { gallery } from '../main';
+import { gallery, loadBtn, page } from '../main';
 
 export function renderGallery(data) {
   gallery.innerHTML = '';
-  const images = data.hits;
-  // console.log(images.length);
-  if (!images.length) {
-    return iziToast.error({
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-      position: 'topRight',
-    });
-  }
+  const images = data.data.hits;
+  // console.log(data);
+  // if (!images.length) {
+  //   return iziToast.error({
+  //     message:
+  //       'Sorry, there are no images matching your search query. Please try again!',
+  //     position: 'topRight',
+  //   });
+  // }
   const galleryView = images
     .map(image => {
       return `<li class="gallery-item">
