@@ -85,7 +85,8 @@ form {
   border-color: #808080;
 }
 
-.form-button {
+.form-button,
+.load-more {
   border: none;
   padding: 6px 16px;
   border-radius: 8px;
@@ -96,8 +97,27 @@ form {
   transition: background-color 400ms ease;
 }
 
-.form-button:hover {
+.load-more {
+  margin: 16px auto 0;
+}
+
+.form-button:hover,
+.load-more:hover {
   background-color: #6c8cff;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .gallery-item {
