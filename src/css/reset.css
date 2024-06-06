@@ -171,6 +171,7 @@ form {
   box-sizing: border-box;
   animation: animloader 2s ease infinite;
 }
+
 .loader::after,
 .loader::before {
   content: '';

@@ -4,10 +4,13 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { gallery, loadBtn, page, loaderSpan } from '../main';
 import loader from 'css-loader';
+export let total = 0;
 
 export function renderGallery(data) {
   if (page == 1) gallery.innerHTML = '';
   loaderSpan.remove();
+  total = data.data.total;
+  console.log(total);
   const images = data.data.hits;
   // console.log(data);
   if (!images.length) {
