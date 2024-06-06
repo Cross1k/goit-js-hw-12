@@ -6,6 +6,7 @@ import { gallery, loadBtn, page, loaderSpan } from '../main';
 import loader from 'css-loader';
 
 export function renderGallery(data) {
+  if (page == 1) gallery.innerHTML = '';
   loaderSpan.remove();
   const images = data.data.hits;
   // console.log(data);
