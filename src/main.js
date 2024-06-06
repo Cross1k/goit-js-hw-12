@@ -17,11 +17,11 @@ formInp.addEventListener('input', () => {
   page = 1;
 });
 
-formBtn.addEventListener('click', e => {
+formBtn.addEventListener('click', async e => {
   e.preventDefault();
   if (q) {
     gallery.append(loaderSpan);
-    pixabayAxios().then(data => renderGallery(data));
+    await pixabayAxios().then(data => renderGallery(data));
   }
   formInp.value = '';
   page += 1;
@@ -29,6 +29,7 @@ formBtn.addEventListener('click', e => {
 });
 
 loadBtn.addEventListener('click', async () => {
+  gallery.append(loaderSpan);
   await pixabayAxios().then(data => renderGallery(data));
   page += 1;
 });
