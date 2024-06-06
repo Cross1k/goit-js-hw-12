@@ -2,19 +2,20 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { gallery, loadBtn, page } from '../main';
+import { gallery, loadBtn, page, loaderSpan } from '../main';
+import loader from 'css-loader';
 
 export function renderGallery(data) {
-  gallery.innerHTML = '';
+  loaderSpan.remove();
   const images = data.data.hits;
   // console.log(data);
-  // if (!images.length) {
-  //   return iziToast.error({
-  //     message:
-  //       'Sorry, there are no images matching your search query. Please try again!',
-  //     position: 'topRight',
-  //   });
-  // }
+  if (!images.length) {
+    return iziToast.error({
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+      position: 'topRight',
+    });
+  }
   const galleryView = images
     .map(image => {
       return `<li class="gallery-item">
@@ -40,7 +41,6 @@ export function renderGallery(data) {
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', galleryView);
-
   let gall = new SimpleLightbox('.gallery a', {
     captionDelay: 250,
     captionsData: 'alt',

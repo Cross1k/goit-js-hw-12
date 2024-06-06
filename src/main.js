@@ -9,32 +9,26 @@ export let page = 1;
 const formBtn = document.querySelector('.form-button');
 const formInp = document.querySelector('.form-input');
 export const loadBtn = document.querySelector('.load-more');
+export const loaderSpan = document.createElement('span');
+loaderSpan.classList.add('loader');
 
 formInp.addEventListener('input', () => {
   q = formInp.value.trim();
+  page = 1;
 });
 
 formBtn.addEventListener('click', e => {
   e.preventDefault();
   if (q) {
-    gallery.innerHTML = '<span class="loader"></span>';
-    pixabayAxios()
-      .then(data => renderGallery(data))
-      .catch(error => {
-        console.log(error);
-        iziToast.error({
-          message:
-            'Sorry, there are no images matching your search query. Please try again!',
-          position: 'topRight',
-        });
-      });
+    gallery.append(loaderSpan);
+    pixabayAxios().then(data => renderGallery(data));
   }
   formInp.value = '';
   page += 1;
   if (page > 1) loadBtn.classList.remove('visually-hidden');
 });
 
-loadBtn.addEventListener('click', () => {
-  pixabayAxios().then(data => renderGallery(data));
+loadBtn.addEventListener('click', async () => {
+  await pixabayAxios().then(data => renderGallery(data));
   page += 1;
 });
