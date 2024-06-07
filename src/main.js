@@ -33,7 +33,6 @@ formBtn.addEventListener('click', async e => {
 loadBtn.addEventListener('click', async () => {
   const scrollHeight =
     document.querySelector('.gallery-item').getBoundingClientRect().height * 2;
-  console.log(scrollHeight);
   gallery.append(loaderSpan);
   await pixabayAxios().then(data => renderGallery(data));
   page += 1;
