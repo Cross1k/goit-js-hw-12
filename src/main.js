@@ -20,21 +20,28 @@ formInp.addEventListener('input', () => {
 formBtn.addEventListener('click', async e => {
   e.preventDefault();
   gallery.innerHTML = '';
+  loadBtn.classList.add('visually-hidden');
   if (q) {
     gallery.append(loaderSpan);
     await pixabayAxios().then(data => renderGallery(data));
     formInp.value = '';
     page += 1;
-    loadBtn.classList.remove('visually-hidden');
+    if (total > 15) loadBtn.classList.remove('visually-hidden');
   }
 });
 
 loadBtn.addEventListener('click', async () => {
-  loadBtn.classList.add('visually-hidden');
+  const scrollHeight =
+    document.querySelector('.gallery-item').getBoundingClientRect().height * 2;
+  // const cardHeight = imageCard.getBoundingClientRect();
+  console.log(scrollHeight);
+  window.scrollBy({
+    top: scrollHeight,
+    behavior: 'smooth',
+  });
   gallery.append(loaderSpan);
   await pixabayAxios().then(data => renderGallery(data));
   page += 1;
-  loadBtn.classList.remove('visually-hidden');
   if (page > total / 15) {
     loadBtn.classList.add('visually-hidden');
     return iziToast.info({
