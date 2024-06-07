@@ -33,15 +33,14 @@ formBtn.addEventListener('click', async e => {
 loadBtn.addEventListener('click', async () => {
   const scrollHeight =
     document.querySelector('.gallery-item').getBoundingClientRect().height * 2;
-  // const cardHeight = imageCard.getBoundingClientRect();
   console.log(scrollHeight);
+  gallery.append(loaderSpan);
+  await pixabayAxios().then(data => renderGallery(data));
+  page += 1;
   window.scrollBy({
     top: scrollHeight,
     behavior: 'smooth',
   });
-  gallery.append(loaderSpan);
-  await pixabayAxios().then(data => renderGallery(data));
-  page += 1;
   if (page > total / 15) {
     loadBtn.classList.add('visually-hidden');
     return iziToast.info({

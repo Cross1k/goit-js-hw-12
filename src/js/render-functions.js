@@ -9,9 +9,7 @@ export async function renderGallery(data) {
   if (page == 1) gallery.innerHTML = '';
   loaderSpan.remove();
   total = data.data.total;
-  console.log(total);
   const images = data.data.hits;
-  // console.log(data);
   if (!images.length) {
     loadBtn.classList.toggle('visually-hidden');
     return iziToast.error({
