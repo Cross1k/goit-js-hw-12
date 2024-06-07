@@ -11,7 +11,7 @@ export async function renderGallery(data) {
   total = data.data.total;
   const images = data.data.hits;
   if (!images.length) {
-    loadBtn.classList.toggle('visually-hidden');
+    loadBtn.classList.add('visually-hidden');
     return iziToast.error({
       message:
         'Sorry, there are no images matching your search query. Please try again!',
@@ -43,9 +43,11 @@ export async function renderGallery(data) {
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', galleryView);
-  let gall = new SimpleLightbox('.gallery a', {
-    captionDelay: 250,
-    captionsData: 'alt',
-  });
-  gall.refresh();
+  if (page == 1) {
+    let gall = new SimpleLightbox('.gallery a', {
+      captionDelay: 250,
+      captionsData: 'alt',
+    });
+    gall.refresh();
+  }
 }
