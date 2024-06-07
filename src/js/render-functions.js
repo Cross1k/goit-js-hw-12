@@ -3,10 +3,9 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { gallery, loadBtn, page, loaderSpan } from '../main';
-import loader from 'css-loader';
 export let total = 0;
 
-export function renderGallery(data) {
+export async function renderGallery(data) {
   if (page == 1) gallery.innerHTML = '';
   loaderSpan.remove();
   total = data.data.total;
@@ -14,6 +13,7 @@ export function renderGallery(data) {
   const images = data.data.hits;
   // console.log(data);
   if (!images.length) {
+    loadBtn.classList.toggle('visually-hidden');
     return iziToast.error({
       message:
         'Sorry, there are no images matching your search query. Please try again!',
