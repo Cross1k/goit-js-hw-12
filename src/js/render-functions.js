@@ -11,7 +11,7 @@ export async function renderGallery(data) {
   total = data.data.total;
   const images = data.data.hits;
   if (!images.length) {
-    loadBtn.classList.toggle('visually-hidden');
+    loadBtn.classList.add('visually-hidden');
     return iziToast.error({
       message:
         'Sorry, there are no images matching your search query. Please try again!',
