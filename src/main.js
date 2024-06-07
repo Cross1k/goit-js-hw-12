@@ -1,3 +1,5 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { pixabayAxios } from './js/pixabay-api';
@@ -28,6 +30,7 @@ formBtn.addEventListener('click', async e => {
     page += 1;
     if (total > 15) loadBtn.classList.remove('visually-hidden');
   }
+  gall.refresh();
 });
 
 loadBtn.addEventListener('click', async () => {
@@ -41,6 +44,7 @@ loadBtn.addEventListener('click', async () => {
     top: scrollHeight,
     behavior: 'smooth',
   });
+  gall.refresh();
   if (page > total / 15) {
     loadBtn.classList.add('visually-hidden');
     return iziToast.info({
@@ -48,4 +52,9 @@ loadBtn.addEventListener('click', async () => {
       position: 'topRight',
     });
   }
+});
+
+let gall = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+  captionsData: 'alt',
 });

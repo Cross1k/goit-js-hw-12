@@ -1,5 +1,3 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { gallery, loadBtn, page, loaderSpan } from '../main';
@@ -43,11 +41,4 @@ export async function renderGallery(data) {
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', galleryView);
-  if (page == 1) {
-    let gall = new SimpleLightbox('.gallery a', {
-      captionDelay: 250,
-      captionsData: 'alt',
-    });
-    gall.refresh();
-  }
 }
